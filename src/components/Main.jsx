@@ -14,7 +14,7 @@ let Main = () => {
     fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data)
+        console.log(data.results)
         setLoading(true)
         setNextUrl(data.next);
         setPrevUrl(data.previous);
@@ -36,17 +36,17 @@ let Main = () => {
   //   // console.log(pokeData)
   // }
 
-  // let getPokemon = async(res) => {
-  //   res.map(async(item) => {
-  //     // console.log(item.url)
-  //     const result = await axios.get(item.url)
-  //     // console.log(result.data)
-  //     setPokeData(state => {
-  //       state=[...state, result.data] // adding a new item
-  //       return state
-  //     })
-  //   })
-  // }
+  let getPokemon = async(res) => {
+    res.map(async(item) => {
+      // console.log(item.url)
+      const result = await axios.get(item.url)
+      // console.log(result.data)
+      setPokeData(state => {
+        state=[...state, result.data] // adding a new item
+        return state
+      })
+    })
+  }
 
   // useEffect(() => { //executes whenever the app renders
   //   pokeFun();
